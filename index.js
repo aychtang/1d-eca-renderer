@@ -1,3 +1,4 @@
+var f   = require("utils-function");
 var eca = require("general-eca-runner");
 
 var state = defaultState();
@@ -35,11 +36,10 @@ function main (r)
   }
 }
 
+var getVal   = f.comp(f.get("value"), f.get("target"));
+var rerender = f.invoke(main, getVal);
+
 document.querySelector(".rule")
-  .addEventListener("input", function (e)
-    {
-      main(e.target.value);
-    }
-  );
+        .addEventListener("input", rerender)
 
 main(110);

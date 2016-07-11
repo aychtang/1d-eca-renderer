@@ -1,4 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+var f   = require("utils-function");
 var eca = require("general-eca-runner");
 
 var state = defaultState();
@@ -36,16 +37,15 @@ function main (r)
   }
 }
 
+var getVal   = f.comp(f.get("value"), f.get("target"));
+var rerender = f.invoke(main, getVal);
+
 document.querySelector(".rule")
-  .addEventListener("input", function (e)
-    {
-      main(e.target.value);
-    }
-  );
+        .addEventListener("input", rerender)
 
 main(110);
 
-},{"general-eca-runner":2}],2:[function(require,module,exports){
+},{"general-eca-runner":2,"utils-function":3}],2:[function(require,module,exports){
 "use strict";
 ;
 function padLeft(l, s, t) {
@@ -78,5 +78,20 @@ function compute(st, r) {
     return newState;
 }
 exports.compute = compute;
+
+},{}],3:[function(require,module,exports){
+"use strict";
+function invoke(f, o) {
+    return function (e) { return f(o(e)); };
+}
+exports.invoke = invoke;
+function get(p) {
+    return function (o) { return o[p]; };
+}
+exports.get = get;
+function comp(f, g) {
+    return function (x) { return f(g(x)); };
+}
+exports.comp = comp;
 
 },{}]},{},[1]);
