@@ -1,0 +1,24 @@
+{
+  "name": "1d-eca-renderer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "general-eca-runner": "^1.0.1",
+    "utils-function": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aychtang/1d-eca-renderer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aychtang/1d-eca-renderer/issues"
+  },
+  "homepage": "https://github.com/aychtang/1d-eca-renderer#readme"
+}
