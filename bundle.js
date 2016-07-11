@@ -18,6 +18,13 @@ function printRow (r)
   }
 }
 
+function defaultState ()
+{
+  var state = Array.apply(null, Array(Math.ceil(document.body.clientHeight / 4))).map(x => 0);
+  state[Math.ceil((state.length - 1) / 2)] = 1;
+  return state;
+}
+
 function main (r)
 {
   state = defaultState();
@@ -25,15 +32,8 @@ function main (r)
   for (var i = 0; i < state.length; i++)
   {
     printRow(i);
-    state = eca.compute(state, r);
+    state = eca.compute(state, +r);
   }
-}
-
-function defaultState ()
-{
-  var state = Array.apply(null, Array(Math.ceil(document.body.clientHeight / 4))).map(x => 0);
-  state[Math.ceil((state.length - 1) / 2)] = 1;
-  return state;
 }
 
 document.querySelector(".rule")
